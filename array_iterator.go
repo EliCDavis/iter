@@ -11,17 +11,15 @@ func Array[T any](data []T) ArrayIterator[T] {
 	}
 }
 
-func (i ArrayIterator[T]) Continue() bool {
-	return i.pointer < len(i.data)
-}
-
-func (i *ArrayIterator[T]) Next() T {
-	if !i.Continue() {
-		panic(ErrAtEnd)
+func (i *ArrayIterator[T]) Next() (item T, err error) {
+	if i.pointer >= len(i.data) {
+		err = ErrAtEnd
+		return
 	}
-	item := i.data[i.pointer]
+
+	item = i.data[i.pointer]
 	i.pointer++
-	return item
+	return
 }
 
 func (i ArrayIterator[T]) At(index int) T {

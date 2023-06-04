@@ -7,12 +7,14 @@ type MapIterator[T, G any] struct {
 	transformation func(T) G
 }
 
-func (ti MapIterator[T, G]) Next() G {
-	return ti.transformation(ti.iterator.Next())
-}
-
-func (ti MapIterator[T, G]) Continue() bool {
-	return ti.iterator.Continue()
+func (ti MapIterator[T, G]) Next() (val G, err error) {
+	var underlying T
+	underlying, err = ti.iterator.Next()
+	if err != nil {
+		return
+	}
+	val = ti.transformation(underlying)
+	return
 }
 
 func Map[T, G any](i iter.Iterator[T], transform func(T) G) iter.Iterator[G] {

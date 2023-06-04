@@ -1,8 +1,7 @@
 package iter
 
 type Iterator[T any] interface {
-	Continue() bool
-	Next() T
+	Next() (T, error)
 }
 
 type BoundIterator[T any] interface {

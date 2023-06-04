@@ -2,6 +2,8 @@
 
 Iterator and utilities.
 
+Some inspiration from [ReactiveX](https://reactivex.io/).
+
 ## Examples
 
 ### Iterating
@@ -21,8 +23,12 @@ func main() {
     arr := iter.Array([]int{1, 2, 3, 4, 5})
 
     sum := 0
-    for arr.Continue() {
-        sum += arr.Next()
+    for {
+        val, err := arr.Next()
+        if err != nil {
+            break
+        }
+        sum += val
     }
 
     // Prints: 15

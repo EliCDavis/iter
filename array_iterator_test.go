@@ -20,14 +20,15 @@ func TestArrayIterator(t *testing.T) {
 	assert.Equal(t, 1, arrayIter.Current())
 
 	newData := make([]int, 0, len(originalData))
-	for arrayIter.Continue() {
-		newData = append(newData, arrayIter.Next())
+	for {
+		item, err := arrayIter.Next()
+		if err != nil {
+			assert.EqualError(t, err, iter.ErrAtEnd.Error())
+			break
+		}
+		newData = append(newData, item)
 	}
 	assert.Equal(t, originalData, newData)
-
-	assert.PanicsWithError(t, iter.ErrAtEnd.Error(), func() {
-		arrayIter.Next()
-	})
 
 	arrayIter.Reset()
 	assert.Equal(t, 1, arrayIter.Current())
