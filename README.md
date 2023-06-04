@@ -1,5 +1,4 @@
 # Iter
-![Coverage](https://img.shields.io/badge/Coverage-100.0%25-brightgreen)
 
 Iterator and utilities.
 
@@ -19,12 +18,12 @@ import (
 )
 
 func main() {
-	arrayIter := iter.Array([]int{1, 2, 3, 4, 5})
+    arr := iter.Array([]int{1, 2, 3, 4, 5})
 
     sum := 0
-	for arrayIter.Continue() {
-		sum += arrayIter.Next()
-	}
+    for arr.Continue() {
+        sum += arr.Next()
+    }
 
     // Prints: 15
     fmt.Println(sum)
@@ -41,22 +40,22 @@ package main
 
 import (
     "fmt"
-	"strconv"
+    "strconv"
 
-	"github.com/EliCDavis/iter"
-	"github.com/EliCDavis/iter/iterops"
+    "github.com/EliCDavis/iter"
+    "github.com/EliCDavis/iter/iterops"
 )
 
 func main() {
-	arr := iter.Array([]string{"1", "2", "3", "4", "5"})
+    arr := iter.Array([]string{"1", "2", "3", "4", "5"})
 
-	mapper := iterops.Map[string, int](&arr, func(s string) int {
-		parsed, err := strconv.Atoi(s)
+    mapper := iterops.Map[string, int](&arr, func(s string) int {
+        parsed, err := strconv.Atoi(s)
         if err != nil {
             panic(err)
         }
-		return parsed
-	})
+        return parsed
+    })
 
     // Prints: [1 2 3 4 5]
     fmt.Println(iter.ReadFull(mapper))
