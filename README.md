@@ -70,3 +70,33 @@ func main() {
     fmt.Println(iter.ReadFull(mapper))
 }
 ```
+
+### Range
+
+Range is a bound iteractor that counts up from 0 to n-1 the value specified
+
+```golang
+package main
+
+import (
+    "fmt"
+
+    "github.com/EliCDavis/iter"
+)
+
+func main() {
+    arr := iter.Range(5)
+
+    sum := 0
+    for {
+        val, err := arr.Next()
+        if err != nil {
+            break
+        }
+        sum += val
+    }
+
+    // Prints: 10 (0 + 1 + 2 + 3 + 4)
+    fmt.Println(sum)
+}
+```
