@@ -18,7 +18,7 @@ func TestFlatten(t *testing.T) {
 		{},
 	})
 
-	flatten := iterops.Flatten[int](&arr)
+	flatten := iterops.Flatten[int](arr)
 
 	flattenData := iter.ReadFull(flatten)
 

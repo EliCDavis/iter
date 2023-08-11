@@ -73,7 +73,7 @@ func main() {
 
 ### Range
 
-Range is a bound iteractor that counts up from 0 to n-1 the value specified
+Range is a bound iterator that emits values incrementally starting from 0 and increasing to n-1, with n being the value specified in the Range constructor.
 
 ```golang
 package main
@@ -85,18 +85,7 @@ import (
 )
 
 func main() {
-    arr := iter.Range(5)
-
-    sum := 0
-    for {
-        val, err := arr.Next()
-        if err != nil {
-            break
-        }
-        sum += val
-    }
-
     // Prints: 10 (0 + 1 + 2 + 3 + 4)
-    fmt.Println(sum)
+    fmt.Println(iter.Sum(iter.Range(5)))
 }
 ```

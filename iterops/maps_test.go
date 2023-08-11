@@ -12,7 +12,7 @@ import (
 func TestMap(t *testing.T) {
 	arr := iter.Array([]string{"1", "2", "3", "4", "5"})
 
-	mapper := iterops.Map[string, int](&arr, func(s string) int {
+	mapper := iterops.Map[string, int](arr, func(s string) int {
 		parsed, _ := strconv.Atoi(s)
 		return parsed
 	})

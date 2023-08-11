@@ -11,8 +11,8 @@ import (
 func TestFilter(t *testing.T) {
 	arr := iter.Array([]int{1, 2, 3, 4, 5})
 
-	mapper := iterops.Filter[int](&arr, func(i int) bool {
-		return i % 2 == 0
+	mapper := iterops.Filter[int](arr, func(i int) bool {
+		return i%2 == 0
 	})
 
 	mappedData := iter.ReadFull(mapper)

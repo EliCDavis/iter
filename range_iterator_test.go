@@ -14,7 +14,7 @@ func TestRange(t *testing.T) {
 	assert.Equal(t, 0, i.Current())
 
 	// test reading all elements
-	assert.Equal(t, []int{0, 1, 2, 3, 4}, iter.ReadFull[int](&i))
+	assert.Equal(t, []int{0, 1, 2, 3, 4}, iter.ReadFull[int](i))
 
 	// test at
 	assert.Equal(t, 0, i.At(0))
@@ -37,5 +37,11 @@ func TestRange(t *testing.T) {
 	// test lower bound At()
 	assert.PanicsWithError(t, iter.ErrNotInBounds.Error(), func() {
 		i.At(-1)
+	})
+}
+
+func TestRangePanicsWithValueLessThan0(t *testing.T) {
+	assert.PanicsWithError(t, iter.ErrInvalidRangeValue.Error(), func() {
+		iter.Range(-1)
 	})
 }

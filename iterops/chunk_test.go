@@ -10,7 +10,7 @@ import (
 
 func TestChunk(t *testing.T) {
 	arr := iter.Array([]int{1, 2, 3, 4, 5})
-	chunkedIterator := iterops.Chunk[int](&arr, 2)
+	chunkedIterator := iterops.Chunk[int](arr, 2)
 
 	mappedData := iter.ReadFull(chunkedIterator)
 
@@ -22,7 +22,7 @@ func TestChunk(t *testing.T) {
 
 func TestChunkPerfect(t *testing.T) {
 	arr := iter.Array([]int{1, 2, 3, 4, 5, 6})
-	chunkedIterator := iterops.Chunk[int](&arr, 2)
+	chunkedIterator := iterops.Chunk[int](arr, 2)
 
 	mappedData := iter.ReadFull(chunkedIterator)
 

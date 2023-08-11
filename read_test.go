@@ -10,5 +10,5 @@ import (
 func TestReadFull(t *testing.T) {
 	original := []int{1, 2, 3, 4, 5}
 	i := iter.Array(original)
-	assert.Equal(t, original, iter.ReadFull[int](&i))
+	assert.Equal(t, original, iter.ReadFull[int](i))
 }

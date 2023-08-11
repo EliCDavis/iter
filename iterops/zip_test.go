@@ -13,7 +13,7 @@ func TestZip(t *testing.T) {
 	arrA := iter.Array([]int{1, 2, 3, 4, 5})
 	arrB := iter.Array([]string{"A", "B", "C", "D", "E"})
 
-	mapper := iterops.Zip[int, string, string](&arrA, &arrB, func(i int, s string) string {
+	mapper := iterops.Zip[int, string, string](arrA, arrB, func(i int, s string) string {
 		return fmt.Sprintf("%d%s", i, s)
 	})
 
@@ -26,7 +26,7 @@ func TestZipStreamEndsEarly(t *testing.T) {
 	arrA := iter.Array([]int{1, 2, 3, 4, 5})
 	arrB := iter.Array([]string{"A", "B", "C", "D"})
 
-	mapper := iterops.Zip[int, string, string](&arrA, &arrB, func(i int, s string) string {
+	mapper := iterops.Zip[int, string, string](arrA, arrB, func(i int, s string) string {
 		return fmt.Sprintf("%d%s", i, s)
 	})
 

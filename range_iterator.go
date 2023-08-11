@@ -5,8 +5,11 @@ type RangeIterator struct {
 	pointer int
 }
 
-func Range(size int) RangeIterator {
-	return RangeIterator{
+func Range(size int) *RangeIterator {
+	if size < 0 {
+		panic(ErrInvalidRangeValue)
+	}
+	return &RangeIterator{
 		size:    size,
 		pointer: 0,
 	}

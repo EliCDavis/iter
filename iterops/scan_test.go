@@ -11,7 +11,7 @@ import (
 func TestScan(t *testing.T) {
 	arr := iter.Array([]int{1, 2, 3, 4})
 
-	mapper := iterops.Scan[int](&arr, func(cur, acc int) int {
+	mapper := iterops.Scan[int](arr, func(cur, acc int) int {
 		return cur + acc
 	})
 

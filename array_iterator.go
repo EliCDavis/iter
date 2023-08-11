@@ -5,8 +5,8 @@ type ArrayIterator[T any] struct {
 	pointer int
 }
 
-func Array[T any](data []T) ArrayIterator[T] {
-	return ArrayIterator[T]{
+func Array[T any](data []T) *ArrayIterator[T] {
+	return &ArrayIterator[T]{
 		data: data,
 	}
 }
